@@ -8,7 +8,8 @@ public class p11729_hanoi {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
-		sb.append(Math.pow(2,n)-1+"\n");
+		//하노이탑 이동 횟수는 2^n-1번이다.
+		sb.append((int)Math.pow(2,n)-1+"\n");//Math.pow는 실수로 나옴
 		hanoi(n, 1, 2, 3);
 		System.out.print(sb);
 
