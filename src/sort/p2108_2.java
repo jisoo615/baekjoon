@@ -45,9 +45,9 @@ public class p2108_2 {
 			}
 			int small = Math.min(first, last); int big = Math.max(first, last);
 			
-			bw.write(String.valueOf(Math.round((sum/n)*10)/10)+"\n"
-					+String.valueOf(mode)+"\n"//최빈값
-					+String.valueOf(center)+"\n"//중간값
+			bw.write(String.valueOf((int)Math.round((double)sum/n))+"\n"
+					+"틀렸음-"+String.valueOf(+mode)+"\n"//최빈값
+					+"틀렸음-"+String.valueOf(center)+"\n"//중간값
 					+String.valueOf(big-small)+"\n"//최댓값과 최솟값의 차이
 					);
 			bw.flush();

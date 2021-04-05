@@ -26,7 +26,7 @@ public class p2108 {
 				sum +=data[i];
 			}
 		
-			bw.write(String.valueOf(sum/n)+"\n"
+			bw.write(String.valueOf((int)Math.round((double)sum/n))+"\n"
 				+String.valueOf(data[middle])+"\n"
 				+String.valueOf(" 못구했음 ")+"\n"
 				+String.valueOf(data[n-1]-data[0])+"\n");
