@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-
+//merge sort를 사용했지만 최빈값 구할 수 없었음..
 public class p2108 {
 	static int[] tmp;
 	static int[] data;
