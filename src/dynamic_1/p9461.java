@@ -27,6 +27,7 @@ public class p9461 {
 	public static long P(int N) {
 		if(dp[N]==-1) {
 			return dp[N]=P(N-1)+P(N-5);
+			//근데 dp[N] = P(N-2)+P(N-3) 도 있음..
 		}
 		return dp[N];
 	}
