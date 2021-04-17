@@ -3,7 +3,9 @@ package dynamic_1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+//포도주 시식
+//재귀 top-down 방식 계단오르기와 비슷(2579) 
+//계단오르기와 더룬 점: 뒷 순서일 수록 크다는 보장이 없기 때문에, n번째를 포함할때와 n전꺼가 더 큰지 비교해줘야 함.
 public class p2156 {
 	public static Integer[] dp;
 	public static int[] arr;

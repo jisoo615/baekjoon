@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class p10844_1 {
-//반복문 bottom-up 방식
+//반복문 bottom-up 방식 (1부터 시작)
 	final static long mod = 1000000000;
 	
 	public static void main(String[] args) throws IOException{

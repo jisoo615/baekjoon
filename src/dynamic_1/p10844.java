@@ -3,7 +3,8 @@ package dynamic_1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-//재귀 top-down 방식
+//쉬운 계단 수 456567
+//재귀 top-down 방식 (젤 큰 자깃수 부터 하니까 :1의자리를 미리 1로 경우의수 초기화 해좋고, 젤 큰 자리부터 아래로 내려오는 식으로 탬색)
 public class p10844 {
 	public static Long[][] dp;
 	final static long MOD = 1000000000;

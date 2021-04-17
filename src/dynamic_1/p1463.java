@@ -3,7 +3,7 @@ package dynamic_1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+//숫자 1만들기
 public class p1463 {
 	public static Integer[] dp;
 	

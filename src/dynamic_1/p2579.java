@@ -3,7 +3,7 @@ package dynamic_1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+//계단오르기
 public class p2579 {
 	public static int[] stairs;
 	public static Integer[] dp;
