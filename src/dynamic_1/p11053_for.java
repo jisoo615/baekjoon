@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-//가장 긴 증가하는 부분 수열
-public class p11053 {
+
+public class p11053_for {
 	public static int[] A;
 	public static Integer[] dp;
 	public static int N;
@@ -20,25 +20,22 @@ public class p11053 {
 			A[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		int max =0;
+		//dp
 		for(int i=0; i<N; i++) {
-			max  = Math.max(dp[i], max);
-		}
-		System.out.print(max);
-		
-	}
-	
-	public static int LIS(int n) {
-		if(dp[n]==null) {
-			dp[n] = 1;
-			for(int i=N-1; i>=0; i--) {
-				if(A[i] < A[n]) {//자기보다 전에 작은게 있으면 +1
-					dp[n] = Math.max(dp[n], LIS(i)+1);
+			dp[i]=1;
+			for(int j=0; j<i; j++) {
+				if(A[j] < A[i] && dp[i] < dp[j]+1 ) {
+					dp[i] = dp[j]+1;
 				}
 			}
 		}
 		
-		return dp[n];
+		int max =0;
+		for(int i=0; i<N; i++) {
+			max  = Math.max(max, dp[i]);
+		}
+		System.out.print(max);
+		
 	}
 
 }
