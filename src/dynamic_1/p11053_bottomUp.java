@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class p11053_for {
+public class p11053_bottomUp {
 	public static int[] A;
 	public static Integer[] dp;
 	public static int N;
