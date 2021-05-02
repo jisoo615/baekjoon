@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 //이항계수 
 //+동적계획법 추가
-public class p11050 {
+public class p11051 {
 	static int[][] dp;
 
 	public static void main(String[] args) throws IOException{
@@ -18,7 +18,7 @@ public class p11050 {
 		
 		dp = new int[N+1][R+1];
 		
-		System.out.print(BC(N, R));
+		System.out.print(BC(N, R)%10007);
 
 	}
 
