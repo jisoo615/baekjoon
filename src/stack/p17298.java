@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
 import java.util.StringTokenizer;
-
+//시간초과 이 풀이는 O[N^2]걸림
 public class p17298 {
 // i번째 오른쪽에 있는 수중 큰 수들 중에 가장 왼쪽에 있는 수를 구해라. 없으면 -1
 	public static int N;

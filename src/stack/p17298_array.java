@@ -14,7 +14,7 @@ public class p17298_array {
 		int N = Integer.parseInt(br.readLine());
 		int[] seq = new int[N];
 		int[] stack = new int[N];
-		int top = -1;
+		int top = -1;//스택이 비었을때 -1임.
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		for(int i=0; i<N; i++) {
@@ -22,15 +22,23 @@ public class p17298_array {
 		}
 		
 		StringBuilder sb = new StringBuilder();
+		
 		for(int i=0; i<N; i++) {
 			while(top != -1 && seq[stack[top]] < seq[i]) {
-				seq[stack[top]] = seq[i];
+				seq[stack[top]] = seq[i];//pop하면서 값 바꿔주기
 				top--;
 			}
 			top++;
-			stack[top] =i;
+			stack[top] =i;//push
 		}
 		
+		for(int i= top; i>=0; i--) {
+			seq[stack[i]] = -1;//스택에 남아있는 것드릉ㄹ -1로 update
+		}
+		
+		for(int val : seq) {
+			sb.append(val).append(" ");
+		}
 		
 		System.out.print(sb);
 	}

@@ -20,15 +20,16 @@ public class p17298_stack {
 		
 		StringBuilder sb = new StringBuilder();
 		Stack<Integer> stack = new Stack<Integer>();
+		
 		for(int i=0; i<N; i++) {
-			while(!stack.empty() && seq[stack.peek()] < seq[i]) {
+			while(!stack.empty() && seq[stack.peek()] < seq[i]) {// 스택이 쌓여있고, 스택맨위 < 현재수 이면 팝하면서 현재수로 바꿔줌.
 				seq[stack.pop()] = seq[i];
 			}
-			stack.push(i);
+			stack.push(i); //비어있으면 무조건 현재 수 push, 스택맨위 > 현재수 즉 큰 수를 찾을 때까지 push함
 		}
 		
 		while(!stack.empty()) {
-			seq[stack.pop()] = -1;
+			seq[stack.pop()] = -1;//위에서 다 끝나고 남아있는 스택을 팝하면서 -1로 업데이트해줌
 		}
 		
 		for(int val : seq) {
