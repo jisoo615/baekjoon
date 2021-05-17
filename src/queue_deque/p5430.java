@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
-
+//못풀어서 p5430_retry에 다시 품. AC 메소드로 헷갈리지 않게
 public class p5430 {
 
 	public static void main(String[] args) throws IOException{
@@ -61,6 +61,7 @@ public class p5430 {
 			sb.append(dq.poll()).append("]").append("\n");
 			
 		}
+		System.out.print(sb);
 
 	}
 
