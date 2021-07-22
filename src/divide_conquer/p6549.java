@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
- 
+ //기준을 가운데 왼쪽 오른쪽으로 두어 계산하고 그 중 최대값을 구하는 방식.
 public class p6549 {
 	
 	public static int[] histogram;
