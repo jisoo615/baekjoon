@@ -10,7 +10,7 @@ public static boolean arr[][];
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		N = sc.nextInt();
-
+		sc.close();
 	}
-
+	
 }
