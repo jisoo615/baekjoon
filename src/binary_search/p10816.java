@@ -7,13 +7,13 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class p10816 {
-	public static int[] arr;
+	public static long[] arr;
 
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int N = Integer.parseInt(br.readLine());
-		arr = new int[N];
+		arr = new long[N];
 		
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		for(int i = 0; i < N; i++) {
@@ -29,18 +29,22 @@ public class p10816 {
 		st = new StringTokenizer(br.readLine(), " ");
 		for(int i=0; i<M; i++) {
 			int findNum = Integer.parseInt(st.nextToken());
+			int lower_indx = lower_bound(findNum);
+			int upper_indx = upper_bound(findNum);
 			
-			if( findNum == arr[ lower_bound(findNum) ] ) {//찾는 숫자가 없을 땐 0 출력해야 하니까
+			if( findNum == arr[ lower_indx ] ) {//찾는 숫자가 없을 땐 0 출력해야 하니까
 				
-				if( upper_bound(findNum) == N-1 ) {//아래 주의** 주석 보정 한 부분
-					sb.append(upper_bound(findNum)-lower_bound(findNum) + 1);
+				if( upper_indx == N-1 ) {//아래 주의** 주석 보정 한 부분
+					sb.append(upper_indx-lower_indx + 1);
 				}else {
-					sb.append(upper_bound(findNum)-lower_bound(findNum));
+					sb.append(upper_indx-lower_indx);
 				}
+			
 			}
-			else {
+			else {//찾는 숫자가 없을 땐 0 출력
 				sb.append("0");
 			}
+			
 			sb.append(" ");
 			
 		}/**
@@ -52,7 +56,7 @@ public class p10816 {
 	}
 	
 	
-	public static int lower_bound(int findNum) {//찾고자 하는 숫자가 처음 나오는 자리
+	public static int lower_bound(int findNum) {//찾고자 하는 숫자가 처음 나오는 자리(findNum 이하)
 		int start=0; int end= arr.length-1; 
 		int mid;
 		
@@ -69,7 +73,7 @@ public class p10816 {
 		return end;
 	}
 	
-	public static int upper_bound(int findNum) {//찾으려는 수보다 처으믕로 더 큰 수의 자리
+	public static int upper_bound(int findNum) {//찾으려는 수보다 처으믕로 더 큰 수의 자리(findNum 초과)
 		int start=0; int end= arr.length-1; 
 		int mid;
 		
