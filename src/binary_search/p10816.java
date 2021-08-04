@@ -33,13 +33,7 @@ public class p10816 {
 			int upper_indx = upper_bound(findNum);
 			
 			if( findNum == arr[ lower_indx ] ) {//찾는 숫자가 없을 땐 0 출력해야 하니까
-				
-				if( upper_indx == N-1 ) {//아래 주의** 주석 보정 한 부분
-					sb.append(upper_indx-lower_indx + 1);
-				}else {
-					sb.append(upper_indx-lower_indx);
-				}
-			
+				sb.append(upper_indx-lower_indx + 1);
 			}
 			else {//찾는 숫자가 없을 땐 0 출력
 				sb.append("0");
@@ -47,9 +41,7 @@ public class p10816 {
 			
 			sb.append(" ");
 			
-		}/**
-		 주의 ** arr에 있는 맨 마지막 수(10)를 찾는 upper_bound는 9가 마지막이다. 숫자가 더 큰게 많았으면 10인데. 그래서 보정 해줘야함.
-		 **/
+		}
 		
 		System.out.print(sb);
 
@@ -63,10 +55,10 @@ public class p10816 {
 		while(start < end) {
 			mid = (start+end)/2;
 			
-			if(arr[mid] >= findNum) {//찾으려는 수보다 작거나 같은 수를 찾는다. 
-				end = mid;
-			}else {
+			if(arr[mid] < findNum) {//찾으려는 수보다 작거나 같은 수를 찾는다. 
 				start = mid+1;
+			}else {
+				end = mid;
 			}
 		}
 		
@@ -78,12 +70,12 @@ public class p10816 {
 		int mid;
 		
 		while(start < end) {
-			mid = (start+end)/2;
+			mid = (start+end)/2+1;
 			
 			if(arr[mid] > findNum) {//찾으려는 수보다 큰 수를 찾는다.
-				end = mid;
+				end = mid-1;
 			}else {
-				start = mid+1;
+				start = mid;
 			}
 		}
 		
