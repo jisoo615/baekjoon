@@ -36,6 +36,8 @@ public class p1260 {
 		
 		dfs(V);
 		sb.append("\n");
+		dfs_stack(V);//여긴 내가 추가 구현 한것.
+		sb.append("\n");
 		bfs(V);
 		
 		System.out.print(sb);
@@ -52,24 +54,26 @@ public class p1260 {
 		}
 	}
 	
-	/*static void dfs_stack(int startV) {
+	static void dfs_stack(int startV) {//재귀가 아니라 stack으로 구현하면 lifo라서 오른쪽 먼저 탐색-->탐색 결과나 속도는 차이 없음 방향차이뿐!
 		Arrays.fill(check, false);
 		
 		Stack<Integer> stack = new Stack<Integer>();
 		
 		stack.add(startV);
-		sb.append(startV+" ");
 		check[startV] = true;
 		
 		while(!stack.isEmpty()){
+			int cur_node = stack.pop();
+			sb.append(cur_node).append(" ");
 			for(int i=1; i<check.length; i++) {
-				if(i !=startV && !check[i] && arr[startV][i] == 1) {
+				if(i !=cur_node && !check[i] && arr[cur_node][i] == 1) {
 					stack.add(i);
+					check[i] = true;
 				}
 			}
 		}
 		
-	}*///*****dfs를 스택을 이용해서 구현하기 미완성 
+	}
 	
 	static void bfs(int startV) {
 		Arrays.fill(check, false);
