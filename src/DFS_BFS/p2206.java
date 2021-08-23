@@ -80,10 +80,10 @@ public class p2206 {
     	int cnt;
     	
     	public Point(int x, int y, int breakWall, int cnt) {
-    		x = this.x;
-    		y = this.y;
-    		breakWall = this.breakWall;
-    		cnt = this.cnt;
+    		this.x = x;	//¡÷¿« x = this.x ∞° æ∆¥‘::
+    		this.y = y;
+    		this.breakWall = breakWall;
+    		this.cnt = cnt;
     	}
     	
     }
