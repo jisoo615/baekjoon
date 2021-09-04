@@ -1,8 +1,6 @@
 package programmers;
 
-import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 //프린터 우선순위가 먼저인 프린터가 존재하면 무조건 뒤로.
 public class printer {

@@ -38,7 +38,6 @@ public class truckOverBridge {
 			time++;
 		}
 		
-		int answer = time;
 		System.out.print(time);
 	}
 }
