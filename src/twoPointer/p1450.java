@@ -8,15 +8,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.StringTokenizer;
 
-//Åõ Æ÷ÀÎÅÍ, meet in the middle ¾Ë°í¸®Áò »ç¿ëÇÑ´Ù.
-/** <2^NÀº ¾ÈµÇ´Âµ¥ 2^(N/2)´Â µÉ°Å°°À» ¶§>
-* ÁıÇÕÀ» µÎ ºÎºĞÁıÇÕÀ¸·Î ÂÉ°³°í, ºÎºĞÁıÇÕ A, B¶ó°í ÇÏÀÚ. 
-     AÀÇ ¿ø¼Ò´Â n/2°³ÀÌ°í B´Â ³ª¸ÓÁö°¡ µé¾î°¡ÀÖ´Ù.
-* A¿¡¼­ ±¸ÇÒ ¼ö ÀÖ´Â ¸ğµç ºÎºĞÁıÇÕµéÀÇ ¿ø¼ÒÀÇ ÇÕÀ» °è»êÇÏ°í, ¹è¿­ X¿¡ ÀúÀåÇÑ´Ù.
-    ¸¶Âù°¡Áö·Î B¿¡¼­ ±¸ÇÒ ¼ö ÀÖ´Â ¸ğµç ºÎºĞÁıÇÕÀÇ ¿ø¼ÒÀÇ ÇÕÀ» °è»êÇÏ°í, ¹è¿­ Y¿¡ ÀúÀå. X¿Í YÀÇ Å©±â´Â ÃÖ´ë 2^(n/2)
-* X¿Í Y¸¦ Á¶ÇÕÇÏ¿© ÇÕÀÌ Sº¸´Ù ÀÛÀº °ÍÀ» ±¸ÇÑ´Ù. Y¸¦ Á¤·Ä ÈÄ XÀÇ °¢ ¿ø¼Ò¸¶´Ù ¼øÈ¸ÇÑ´Ù. 
-    Y¿¡¼­ ÀÌÁø Å½»öÀ» ÁøÇàÇÏ¿© x + y ¡Â SÀÎ ¿ø¼Ò y¸¦ Ã£´Â´Ù.
- **/
+//íˆ¬ í¬ì¸í„°, meet in the middle ì•Œê³ ë¦¬ì¦˜ ì‚¬ìš©í•œë‹¤.
+/** <2^Nì€ ì•ˆë˜ëŠ”ë° 2^(N/2)ëŠ” ë ê±°ê°™ì„ ë•Œ>
+* ì§‘í•©ì„ ë‘ ë¶€ë¶„ì§‘í•©ìœ¼ë¡œ ìª¼ê°œê³ , ë¶€ë¶„ì§‘í•© A, Bë¼ê³  í•˜ì.
+   Aì˜ ì›ì†ŒëŠ” n/2ê°œì´ê³  BëŠ” ë‚˜ë¨¸ì§€ê°€ ë“¤ì–´ê°€ìˆë‹¤.
+* Aì—ì„œ êµ¬í•  ìˆ˜ ìˆëŠ” ëª¨ë“  ë¶€ë¶„ì§‘í•©ë“¤ì˜ ì›ì†Œì˜ í•©ì„ ê³„ì‚°í•˜ê³ , ë°°ì—´ Xì— ì €ì¥í•œë‹¤.
+  ë§ˆì°¬ê°€ì§€ë¡œ Bì—ì„œ êµ¬í•  ìˆ˜ ìˆëŠ” ëª¨ë“  ë¶€ë¶„ì§‘í•©ì˜ ì›ì†Œì˜ í•©ì„ ê³„ì‚°í•˜ê³ , ë°°ì—´ Yì— ì €ì¥. Xì™€ Yì˜ í¬ê¸°ëŠ” ìµœëŒ€ 2^(n/2)
+* Xì™€ Yë¥¼ ì¡°í•©í•˜ì—¬ í•©ì´ Së³´ë‹¤ ì‘ì€ ê²ƒì„ êµ¬í•œë‹¤. Yë¥¼ ì •ë ¬ í›„ Xì˜ ê° ì›ì†Œë§ˆë‹¤ ìˆœíšŒí•œë‹¤.
+  Yì—ì„œ ì´ì§„ íƒìƒ‰ì„ ì§„í–‰í•˜ì—¬ x + y â‰¤ Sì¸ ì›ì†Œ yë¥¼ ì°¾ëŠ”ë‹¤.
+**/
 public class p1450 {
 	static int dp[][], arr[], n, c;
 	static ArrayList<Integer> lista, listb, result;
@@ -26,47 +26,47 @@ public class p1450 {
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		n = Integer.parseInt(st.nextToken());
 		c = Integer.parseInt(st.nextToken());
-		
+
 		arr = new int[n+1];
 		st = new StringTokenizer(br.readLine(), " ");
 		for(int i=0; i<n; i++) arr[i]= Integer.parseInt(st.nextToken());
 		Arrays.sort(arr);
-		
+
 		lista = new ArrayList<>();
 		listb = new ArrayList<>();
 		makePartialSum(0, n/2, 0, lista);
 		makePartialSum(n/2, n, 0, listb);
-		
-		Collections.sort(listb);//ÇÑ ¸®½ºÆ®¸¸ ¿À¸§Â÷¼ø Á¤·ÄÇØµÎ±â (listb°¡ ±âÁØ)
-		/* 
-		 * ºÎºĞÇÕ ³¢¸®´Â ¶Ç´Ù½Ã ºÎºĞÇÕÀ» ±¸ÇÏÁö ¾Ê¾Æµµ µÊ. ¶Ç´Ù½Ã ÇÑ´Ù¸é Áßº¹ÀÌ µÊ
-		 * ex) 1 2 3 -> 0 1 2 3 3 4 5 6 (8°³)
+
+		Collections.sort(listb);//
+		/*
+		 * ë¶€ë¶„í•© ë¼ë¦¬ëŠ” ë˜ë‹¤ì‹œ ë¶€ë¶„í•©ì„ êµ¬í•˜ì§€ ì•Šì•„ë„ ë¨. ë˜ë‹¤ì‹œ í•œë‹¤ë©´ ì¤‘ë³µì´ ë¨
+		 * ex) 1 2 3 -> 0 1 2 3 3 4 5 6 (8ê°œ)
 		 * 0 1 2 3 / 0 3
-		 * -> 0 3 1 4 2 5 3 6 (8°³)
+		 * -> 0 3 1 4 2 5 3 6 (8ê°œ)
 		 */
 		int answer = 0;
 		for(int i=0; i<lista.size(); i++) {
 			answer += binarySearch(0, listb.size()-1, lista.get(i) ) + 1;
 		}
-		
+
 		//System.out.println(lista.toString());
 		//System.out.println(listb.toString());
 		System.out.println(answer);
 	}
-	
-	static void makePartialSum(int start, int end, int sum, ArrayList<Integer> list) {//ºÎºĞÇÕ ±¸ÇÏ±â = Åõ Æ÷ÀÎÅÍ		
-		
+
+	static void makePartialSum(int start, int end, int sum, ArrayList<Integer> list) {//ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ = ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
 		if(sum > c) return;
 		if(start == end) {
 			list.add(sum);
 			return;
 		}
-			
+
 		makePartialSum(start+1, end, sum + arr[start+1], list);
 		makePartialSum(start+1, end, sum, list);
-		
+
 	}
-	
+
 	static int binarySearch(int start, int end, int val) {//
 		int mid, index=-1;
 		while(start <= end) {
