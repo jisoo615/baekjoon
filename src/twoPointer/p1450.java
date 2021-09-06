@@ -3,9 +3,11 @@ package twoPointer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.Collections;
 import java.util.StringTokenizer;
+
 //투 포인터, meet in the middle 알고리즘 사용한다.
 /** <2^N은 안되는데 2^(N/2)는 될거같을 때>
 * 집합을 두 부분집합으로 쪼개고, 부분집합 A, B라고 하자. 
@@ -16,7 +18,8 @@ import java.util.StringTokenizer;
     Y에서 이진 탐색을 진행하여 x + y ≤ S인 원소 y를 찾는다.
  **/
 public class p1450 {
-	static int dp[][], prod[], n, c;
+	static int dp[][], arr[], n, c;
+	static ArrayList<Integer> lista, listb, result;
 
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -24,38 +27,58 @@ public class p1450 {
 		n = Integer.parseInt(st.nextToken());
 		c = Integer.parseInt(st.nextToken());
 		
-		int[] origin = new int[n];
+		arr = new int[n+1];
 		st = new StringTokenizer(br.readLine(), " ");
-		for(int i=0; i<n; i++) origin[i] = Integer.parseInt(st.nextToken());
-		Arrays.sort(origin);//정렬
+		for(int i=0; i<n; i++) arr[i]= Integer.parseInt(st.nextToken());
+		Arrays.sort(arr);
 		
-		int[] A = new int[(int) Math.ceil(n/2)];
-		int[] B = new int[n-A.length];
-	    for(int i=0; i<A.length; i++) {
-	    	A[i] = origin[i];
-	    }
-	    for(int i=A.length; i<n; i++) {
-	    	B[i] = origin[i];
-	    }
-	    
-	    LinkedList<Integer> list = makePartialSum(A);
-	    list.addAll(makePartialSum(B));
-	}
-	
-	static LinkedList<Integer> makePartialSum(int[] set) {//부분합 구하기 = 투 포인터
-		LinkedList<Integer> list = new LinkedList<>();
-		int start = 0, end = set.length, sum=0;
+		lista = new ArrayList<>();
+		listb = new ArrayList<>();
+		makePartialSum(0, n/2, 0, lista);
+		makePartialSum(n/2, n, 0, listb);
 		
-		while(true) {
-			if(sum <= c) {
-				list.add(sum);
-				end--;
-			}else {//sum > c
-				end--;
-			}
-			break;
+		Collections.sort(listb);//한 리스트만 오름차순 정렬해두기 (listb가 기준)
+		/* 
+		 * 부분합 끼리는 또다시 부분합을 구하지 않아도 됨. 또다시 한다면 중복이 됨
+		 * ex) 1 2 3 -> 0 1 2 3 3 4 5 6 (8개)
+		 * 0 1 2 3 / 0 3
+		 * -> 0 3 1 4 2 5 3 6 (8개)
+		 */
+		int answer = 0;
+		for(int i=0; i<lista.size(); i++) {
+			answer += binarySearch(0, listb.size()-1, lista.get(i) ) + 1;
 		}
 		
-		return list;
+		//System.out.println(lista.toString());
+		//System.out.println(listb.toString());
+		System.out.println(answer);
 	}
+	
+	static void makePartialSum(int start, int end, int sum, ArrayList<Integer> list) {//부분합 구하기 = 투 포인터		
+		
+		if(sum > c) return;
+		if(start == end) {
+			list.add(sum);
+			return;
+		}
+			
+		makePartialSum(start+1, end, sum + arr[start+1], list);
+		makePartialSum(start+1, end, sum, list);
+		
+	}
+	
+	static int binarySearch(int start, int end, int val) {//
+		int mid, index=-1;
+		while(start <= end) {
+			mid = (start+end)/2;
+			if(listb.get(mid)+val <= c) {
+				index = mid;
+				start = mid+1;
+			}else {
+				end = mid-1;
+			}
+		}
+		return index;
+	}
+
 }
