@@ -53,7 +53,7 @@ public class p12852 {
 		return;
 	}
 
-	static Stack<Integer> findPath() {
+	static Stack<Integer> findPath() {//런타임 에러남 시간초과
 		Stack<Integer> q = new Stack<Integer>();
 		q.push(1);
 		while(q.peek() <= n) {
