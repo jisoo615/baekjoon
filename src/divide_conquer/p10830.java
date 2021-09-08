@@ -8,41 +8,41 @@ import java.util.StringTokenizer;
 public class p10830 {
 	final static int MOD = 1000;
 	public static int N;
-	public static int[][] origin;	// A^1 ÀÏ ¶§ÀÇ ¹è¿­(ÃÊ±â ¹è¿­)
-	
+	public static int[][] origin;	// A^1 ì¼ ë•Œì˜ ë°°ì—´(ì´ˆê¸° ë°°ì—´)
+
 	public static void main(String[] args) throws IOException {
-		
+
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
- 
+
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-				
-		N = Integer.parseInt(st.nextToken());//AÇà·ÄÀÇ Å©±â N*N
-		long B = Long.parseLong(st.nextToken());	//Á¦°öÇÒ ¼ö, Å¸ÀÔ ÁÖÀÇ
-		
+
+		N = Integer.parseInt(st.nextToken());//Aí–‰ë ¬ì˜ í¬ê¸° N*N
+		long B = Long.parseLong(st.nextToken());	//ì œê³±í•  ìˆ˜, íƒ€ì… ì£¼ì˜
+
 		origin = new int[N][N];
-		
-		
+
+
 		for(int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
 			for(int j = 0; j < N; j++) {
-				
+
 				/*
-				 * B=1 ÀÏ ¶§´Â pow°úÁ¤¿¡¼­ ¹Ù·Î A°¡ ¹İÈ¯ µÉ ¼ö ÀÖ´Ù.
-				 * ÀÌ ¶§ÀÇ °æ¿ì ¸¸¾à ¿ø¼Ò°¡ 1000ÀÌ»óÀÏ °æ¿ì pow¸Ş¼Òµå¿¡¼­ ¸ğµâ·¯¿¬»êÀÌ
-				 * ½ÇÇàµÇÁö ¾Ê±â ¶§¹®¿¡ ¿À´äÀÌ µÇ¾î¹ö¸°´Ù.
-				 * 
-				 * ÀÌ¸¦ ¹æÁöÇÏ±â À§ÇØ ÃÊ±â Çà·Ä¿¡µµ 1000À¸·Î ³ª´« ³ª¸ÓÁö °ªÀ¸·Î
-				 * ÃÊ±âÈ­¸¦ ÇØÁØ´Ù.
+				 * B=1 ì¼ ë•ŒëŠ” powê³¼ì •ì—ì„œ ë°”ë¡œ Aê°€ ë°˜í™˜ ë  ìˆ˜ ìˆë‹¤.
+				 * ì´ ë•Œì˜ ê²½ìš° ë§Œì•½ ì›ì†Œê°€ 1000ì´ìƒì¼ ê²½ìš° powë©”ì†Œë“œì—ì„œ ëª¨ë“ˆëŸ¬ì—°ì‚°ì´
+				 * ì‹¤í–‰ë˜ì§€ ì•Šê¸° ë•Œë¬¸ì— ì˜¤ë‹µì´ ë˜ì–´ë²„ë¦°ë‹¤.
+				 *
+				 * ì´ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´ ì´ˆê¸° í–‰ë ¬ì—ë„ 1000ìœ¼ë¡œ ë‚˜ëˆˆ ë‚˜ë¨¸ì§€ ê°’ìœ¼ë¡œ
+				 * ì´ˆê¸°í™”ë¥¼ í•´ì¤€ë‹¤.
 				 */
 				origin[i][j] = Integer.parseInt(st.nextToken()) % MOD;
-			}			
+			}
 		}
-		
+
 		int[][] result = pow(origin, B);
-		
-		
+
+
 		StringBuilder sb = new StringBuilder();
-		
+
 		for(int i = 0; i < N; i++) {
 			for(int j = 0; j < N; j++) {
 				sb.append(result[i][j]).append(' ');
@@ -51,34 +51,34 @@ public class p10830 {
 		}
 		System.out.println(sb);
 	}
-	
+
 	public static int[][] pow(int[][] A, long expo){
 		if(expo == 1L) {
 			return A;
 		}
-		
-		// Áö¼ö¸¦ Àı¹İÀ¸·Î ºĞÇÒÇÏ¿© Àç±ÍÈ£Ãâ
+
+		// ì§€ìˆ˜ë¥¼ ì ˆë°˜ìœ¼ë¡œ ë¶„í• í•˜ì—¬ ì¬ê·€í˜¸ì¶œ
 		int[][] ret = pow(A, expo / 2);
-		// ÇÏÀ§ Àç±Í¿¡¼­ ¾òÀº Çà·ÄÀ» Á¦°öÇØÁØ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 		ret = multiple(ret, ret);
-		
-		// ¸¸¾à Áö¼ö°¡ È¦¼ö¶ó¸é ¸¶Áö¸·¿¡  A^1 (origin)À» °öÇØÁØ´Ù.
+
+		// ë§Œì•½ ì§€ìˆ˜ê°€ í™€ìˆ˜ë¼ë©´ ë§ˆì§€ë§‰ì—  A^1 (origin)ì„ ê³±í•´ì¤€ë‹¤.
 		if(expo % 2 == 1L) {
 			ret = multiple(ret, origin);// (A^2 * A^2) * A^1 = A^5
 		}
-		
+
 		return ret;
 	}
-	
+
 	public static int[][] multiple(int[][] o1, int[][] o2){
-		int[][] ret = new int[N][N];//Çà·ÄA*Çà·ÄA ÇÑ Çà·ÄÀÇ Å©±â´Â N*NÀÌ´Ù.  //AÇà·ÄÀº N*NÅ©±â ÀÏ¶§
-			
+		int[][] ret = new int[N][N];//í–‰ë ¬A*í–‰ë ¬A í•œ í–‰ë ¬ì˜ í¬ê¸°ëŠ” N*Nì´ë‹¤.  //Aí–‰ë ¬ì€ N*Ní¬ê¸° ì¼ë•Œ
+
 		for(int i = 0; i < N; i++) {
 			for(int j = 0; j < N; j++) {
 				for(int k = 0; k < N; k++) {
-					
+
 					ret[i][j] += o1[i][k] * o2[k][j];
-					ret[i][j] %= MOD;	// Çà·Ä ¿ø¼Ò ¿¬»êÀÌ ³¡³ª¸é MOD·Î ³ª¸ÓÁö¿¬»ê
+					ret[i][j] %= MOD;	// í–‰ë ¬ ì›ì†Œ ì—°ì‚°ì´ ëë‚˜ë©´ MODë¡œ ë‚˜ë¨¸ì§€ì—°ì‚°
 				}
 			}
 		}
