@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class p12852 {
 	static int dp[];
@@ -22,7 +21,10 @@ public class p12852 {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(dp[1]).append("\n");
-		for(Integer a : findPath()) sb.append(a).append(" ");
+		LinkedList<Integer> answer = findPath();
+		while(!answer.isEmpty()) {
+			sb.append( answer.pollLast() ).append(" ");
+		}
 		System.out.print(sb);
 		sc.close();
 	}
@@ -40,7 +42,7 @@ public class p12852 {
 				dp[num/3] = dp[num] + 1;
 				q.add(num/3);
 			}
-			if(num%2==0) {
+			if(num%2==0 && dp[num/2] > dp[num]+1) {
 				dp[num/2] = dp[num] + 1;
 				q.add(num/2);
 			}
@@ -53,24 +55,28 @@ public class p12852 {
 		return;
 	}
 
-	static Stack<Integer> findPath() {//런타임 에러남 시간초과
-		Stack<Integer> q = new Stack<Integer>();
-		q.push(1);
-		while(q.peek() <= n) {
+	static LinkedList<Integer> findPath() {//런타임 에러남 시간초과
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		list.add(1);
+		int k = 0;
+		while(k <= n) {
 
-			int now = q.peek();
+			k = list.peekLast();
 
-			if(now==n) break;
+			if(k==n) break;
 
-			for(int i = q.peek(); i<=n; i++) {
+			if( 3*k<=n && dp[k*3] == dp[k]-1 ) {//3*k<=n 요거 안해주면 인덱스 에러
+				list.add(k*3);
 
-				if( dp[i] == now - 1 && isPossibleResult(now, i)) {
-					q.push(i);	//지금 숫자. (dp[])횟수보다 1많은 경우의 숫자 && 그 숫자가 3가지 연산중 하나를 통해 become이 될 수 있을때
-				}
+			}else if( 2*k<=n && dp[k*2] == dp[k]-1 ) {
+				list.add(k*2);
+
+			}else if( k-1<=n && dp[k+1] == dp[k]-1 ) {
+				list.add(k+1);
 			}
-
 		}
-		return q;
+
+		return list;
 	}
 
 	static boolean isPossibleResult(int now, int become) {
