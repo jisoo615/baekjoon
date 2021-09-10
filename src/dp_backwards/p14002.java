@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
  * 둘째 줄에는 가장 긴 증가하는 부분 수열을 출력한다. 그러한 수열이 여러가지인 경우 아무거나 출력한다.
  */
 public class p14002 {
-	static int A[], dp[], v[];//dp[x] = x를 포함하는 최대 증가수열 길이
+	static int A[], dp[];//dp[x] = x를 포함하는 최대 증가수열 길이
 
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

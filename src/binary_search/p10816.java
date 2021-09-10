@@ -11,74 +11,74 @@ public class p10816 {
 
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
+
 		int N = Integer.parseInt(br.readLine());
 		arr = new long[N];
-		
+
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		for(int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
-		
-		//Å½»öÇÒ ¹è¿­Àº Á¤·ÄÀÌ µÇ¾îÀÖ¾î¾ß ÇÔ,
+
+		//ì´ë¶„íƒìƒ‰ì„ ìœ„í•´ ë¯¸ë¦¬ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
 		Arrays.sort(arr);
 
 		int M = Integer.parseInt(br.readLine());
-		
+
 		StringBuilder sb = new StringBuilder();
 		st = new StringTokenizer(br.readLine(), " ");
 		for(int i=0; i<M; i++) {
 			int findNum = Integer.parseInt(st.nextToken());
 			int lower_indx = lower_bound(findNum);
 			int upper_indx = upper_bound(findNum);
-			
-			if( findNum == arr[ lower_indx ] ) {//Ã£´Â ¼ýÀÚ°¡ ¾øÀ» ¶© 0 Ãâ·ÂÇØ¾ß ÇÏ´Ï±î
+
+			if( findNum == arr[ lower_indx ] ) {//Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 0 ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´Ï±ï¿½
 				sb.append(upper_indx-lower_indx + 1);
 			}
-			else {//Ã£´Â ¼ýÀÚ°¡ ¾øÀ» ¶© 0 Ãâ·Â
+			else {//Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 0 ï¿½ï¿½ï¿½
 				sb.append("0");
 			}
-			
+
 			sb.append(" ");
-			
+
 		}
-		
+
 		System.out.print(sb);
 
 	}
-	
-	
-	public static int lower_bound(int findNum) {//Ã£°íÀÚ ÇÏ´Â ¼ýÀÚ°¡ Ã³À½ ³ª¿À´Â ÀÚ¸®(findNum ÀÌÇÏ)
-		int start=0; int end= arr.length-1; 
+
+
+	public static int lower_bound(int findNum) {//ì²˜ìŒìœ¼ë¡œ findNum ì´ìƒì¸ ì¸ë±ìŠ¤ ìœ„ì¹˜-ì™¼ìª½ì— ìœ„ì¹˜
+		int start=0; int end= arr.length-1;
 		int mid;
-		
+
 		while(start < end) {
 			mid = (start+end)/2;
-			
-			if(arr[mid] < findNum) {//Ã£À¸·Á´Â ¼öº¸´Ù ÀÛ°Å³ª °°Àº ¼ö¸¦ Ã£´Â´Ù. 
+
+			if(arr[mid] < findNum) {//Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 				start = mid+1;
 			}else {
 				end = mid;
 			}
 		}
-		
+
 		return end;
 	}
-	
-	public static int upper_bound(int findNum) {//Ã£À¸·Á´Â ¼öº¸´Ù Ã³À¸’×·Î ´õ Å« ¼öÀÇ ÀÚ¸®(findNum ÃÊ°ú)
-		int start=0; int end= arr.length-1; 
+
+	public static int upper_bound(int findNum) {//ì²˜ìŒìœ¼ë¡œ findNumì„ ì´ˆê³¼í•˜ëŠ” ì¸ë±ìŠ¤ ìœ„ì¹˜-ì˜¤ë¥¸ìª½ì— ìœ„ì¹˜
+		int start=0; int end= arr.length-1;
 		int mid;
-		
+
 		while(start < end) {
 			mid = (start+end)/2+1;
-			
-			if(arr[mid] > findNum) {//Ã£À¸·Á´Â ¼öº¸´Ù Å« ¼ö¸¦ Ã£´Â´Ù.
+
+			if(arr[mid] > findNum) {//Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 				end = mid-1;
 			}else {
 				start = mid;
 			}
 		}
-		
+
 		return end;
 	}
 
