@@ -1,14 +1,14 @@
 package dynamic_1;
 
 import java.util.Scanner;
-//µ¿Àû°èÈ¹¹ýÀ¸·Î Ç¬ ÇÇº¸³ªÄ¡
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¬ ï¿½Çºï¿½ï¿½ï¿½Ä¡
 public class fibo {
 	public static long[] arr;
-	
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int N = sc.nextInt();
-		
+
 		arr = new long[N+1];
 		for(int i=0; i<N+1; i++) {
 			arr[i]=-1;
@@ -18,8 +18,9 @@ public class fibo {
 		for(long x: arr) {
 			System.out.print(x+" ");
 		}
+		sc.close();
 	}
-	
+
 	public static long fibonacci(int n) {
 		if(arr[n]==-1) {
 			arr[n] = fibonacci(n-1)+fibonacci(n-2);
