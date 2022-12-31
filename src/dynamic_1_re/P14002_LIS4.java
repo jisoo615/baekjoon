@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
  * 첫째 줄에 수열 A의 가장 긴 증가하는 부분 수열의 길이를 출력한다.
  * 둘째 줄에는 가장 긴 증가하는 부분 수열을 출력한다. 그러한 수열이 여러가지인 경우 아무거나 출력한다.
  */
-public class P14002_LongestASCSequence4 {
+public class P14002_LIS4 {
     static int A[], dp[], v[];//dp[x] = x를 포함하는 최대 증가수열 길이
 
     public static void main(String[] args) throws IOException{

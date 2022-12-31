@@ -44,7 +44,7 @@ public class p12015_lowerbound {
 		while(start < end) {//"같거나"가 없음!
 			mid = (start+end)/2;
 			
-			if(arr[mid] >= value) {//찾으려는 수보다 '작거나 같은 수'를 찾는다. "같거나가 붙음"
+			if(arr[mid] >= value) {//찾으려는 수보다 '크거나 같은 수'를 찾는다. "같거나가 붙음"
 				end = mid;
 			}else {
 				start = mid+1;
