@@ -5,12 +5,14 @@ import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.spi.AbstractResourceBundleProvider;
+
 // https://www.acmicpc.net/problem/17472
 public class P17472_다리만들기2 {
     public static int N, M;
     public static int[][] map, min_dist;
     public static Queue<int[]> q;
-    public static ArrayList<Node> bridgeList;
+    public static PriorityQueue<Node> bridgeList;
     public static boolean[][] visited;
     public static int[] dx = {1, -1, 0, 0}, dy = {0, 0, 1, -1}, parents;
 
@@ -50,7 +52,8 @@ public class P17472_다리만들기2 {
         }
 
         // 각 나라끼리 최소거리 구하기 - 다리 찾기
-        bridgeList = new ArrayList<>();
+//        bridgeList = new ArrayList<>();
+        bridgeList = new PriorityQueue<>();
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 if(map[i][j]>0) findBridge(i, j, map[i][j]);
@@ -58,14 +61,15 @@ public class P17472_다리만들기2 {
         }
         
         // 우선순위큐 -> 배열리스트로 변경함 : 정답됨..
-        Collections.sort(bridgeList);
+//        Collections.sort(bridgeList);
 
         // 부모를 찾아서 부모가 같으면 같은 것 중에 젤 작은 값인 간선 택하기
         parents = new int[number];
         for (int i = 1; i < number; i++) {
             parents[i] = i;// 부모 자기 자신으로 초기화
         }
-        for(Node n : bridgeList){// 다리길이 짧은순
+        while(!bridgeList.isEmpty()){// 다리길이 짧은순
+            Node n = bridgeList.poll();
             if(findRoot(n.from) != findRoot(n.to)){// 연결되지 않았다면
                 union(n.from, n.to);// 둘 이어줌
                 answer += n.len;
