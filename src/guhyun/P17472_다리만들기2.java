@@ -5,12 +5,12 @@ import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-
+// https://www.acmicpc.net/problem/17472
 public class P17472_다리만들기2 {
     public static int N, M;
     public static int[][] map, min_dist;
     public static Queue<int[]> q;
-    public static PriorityQueue<Node> pq;
+    public static ArrayList<Node> bridgeList;
     public static boolean[][] visited;
     public static int[] dx = {1, -1, 0, 0}, dy = {0, 0, 1, -1}, parents;
 
@@ -22,7 +22,7 @@ public class P17472_다리만들기2 {
         @Override
         public int compareTo(Node o) {// 오름차순 - 거리가 작은것 부터니까
             return this.len - o.len;
-        }
+        }// 길이 짧은것이 처음으로 오도록
     }
 
     public static void main(String[] args) throws IOException {
@@ -38,7 +38,7 @@ public class P17472_다리만들기2 {
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        // 나라 구분하기
+        // 나라 구분하기 bfs
         int number = 1;
         visited = new boolean[N][M];
         for (int i = 0; i < N; i++) {
@@ -50,19 +50,22 @@ public class P17472_다리만들기2 {
         }
 
         // 각 나라끼리 최소거리 구하기 - 다리 찾기
-        pq = new PriorityQueue<>();
+        bridgeList = new ArrayList<>();
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 if(map[i][j]>0) findBridge(i, j, map[i][j]);
             }
         }
+        
+        // 우선순위큐 -> 배열리스트로 변경함 : 정답됨..
+        Collections.sort(bridgeList);
 
         // 부모를 찾아서 부모가 같으면 같은 것 중에 젤 작은 값인 간선 택하기
         parents = new int[number];
         for (int i = 1; i < number; i++) {
-            parents[i] = i;// 부모 초기화
+            parents[i] = i;// 부모 자기 자신으로 초기화
         }
-        for(Node n : pq){// 다리길이 짧은순
+        for(Node n : bridgeList){// 다리길이 짧은순
             if(findRoot(n.from) != findRoot(n.to)){// 연결되지 않았다면
                 union(n.from, n.to);// 둘 이어줌
                 answer += n.len;
@@ -108,7 +111,7 @@ public class P17472_다리만들기2 {
                 if(map[nx][ny] != vertax) {
                     if (map[nx][ny] != 0) {// 다른 섬에 도착했을 때 다리 완성
                         if (len >= 2) {
-                            pq.add(new Node(vertax, map[nx][ny], len));
+                            bridgeList.add(new Node(vertax, map[nx][ny], len));
                             break;
                         }
                     } else {// 바다 일때 다리 길이 늘려가기
